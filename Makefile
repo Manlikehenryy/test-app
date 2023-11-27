@@ -14,9 +14,9 @@ ps: ## Show containers.
 build: ## Build all containers for PROD
 	@docker build --no-cache . -f ./Dockerfile
 start: ## Start all containers
-	@docker compose -f docker-compose.local.yml up --force-recreate -d
+	@docker compose -f docker-compose.yml up --force-recreate -d
 stop: ## Stop all containers
-	@docker compose -f docker-compose.local.yml stop
+	@docker compose -f docker-compose.yml stop
 restart: stop start ## Restart all containers
 destroy: stop ## Destroy all containers
 
