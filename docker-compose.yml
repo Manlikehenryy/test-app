@@ -15,20 +15,36 @@ services:
         ports:
             - 8080:8080
         depends_on:
-            - database            
+            - mysql_db
+            - phpmyadmin         
 
-    database:
-        container_name: database
-        image: mysql:8.0
-        ports:
-            -   3306:3306
-        environment:
-            - MYSQL_DATABASE=laravel
-            - MYSQL_USER=secret
-            - MYSQL_PASSWORD=secret
-            - MYSQL_ROOT_PASSWORD=secret
-        volumes:
-            - db-data:/var/lib/mysql   
+    # database:
+    #     container_name: database
+    #     image: mysql:8.0
+    #     ports:
+    #         -   3306:3306
+    #     environment:
+    #         - MYSQL_DATABASE=laravel
+    #         - MYSQL_USER=secret
+    #         - MYSQL_PASSWORD=secret
+    #         - MYSQL_ROOT_PASSWORD=secret
+    #     volumes:
+    #         - db-data:/var/lib/mysql   
 
-volumes:
-    db-data: ~
+    mysql_db:
+      image: mysql:latest
+      environment:
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: laravel_docker
+      ports:
+      - 3306:3306
+    
+    phpmyadmin:
+      image: phpmyadmin:latest
+      ports:
+        - 9001:80
+      environment:
+        - PMA_ARBITRARY=1
+
+# volumes:
+#     db-data: ~
