@@ -15,7 +15,7 @@ services:
         ports:
             - 8080:8080
         depends_on:
-            - mysql_db
+            - 127.0.0.1
             - phpmyadmin         
 
     # database:
@@ -31,7 +31,7 @@ services:
     #     volumes:
     #         - db-data:/var/lib/mysql   
 
-    mysql_db:
+    127.0.0.1:
       image: mysql:latest
       environment:
         MYSQL_ROOT_PASSWORD: secret
